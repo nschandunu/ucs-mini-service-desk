@@ -138,7 +138,7 @@ function App() {
         {/* Ticket List */}
         <TicketList 
           tickets={filteredTickets} 
-          onViewTicket={(ticket) => console.log("Will open details for:", ticket.title)} 
+          onViewTicket={(ticket) => setSelectedTicket(ticket)} 
         />
 
       </div>
@@ -148,6 +148,15 @@ function App() {
         <TicketForm 
           onSubmit={handleAddTicket} 
           onCancel={() => setIsFormOpen(false)} 
+        />
+      )}
+
+      {selectedTicket && (
+        <TicketDetails 
+          ticket={selectedTicket}
+          onClose={() => setSelectedTicket(null)}
+          onUpdateStatus={handleUpdateStatus}
+          onAddNote={handleAddNote}
         />
       )}
     </div>
