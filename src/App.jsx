@@ -1,8 +1,10 @@
 
+
 import { useState, useEffect } from 'react';
 import TicketForm from './components/TicketForm';
 import Dashboard from './components/Dashboard';
 import TicketList from './components/TicketList';
+import TicketDetails from './components/TicketDetails';
 
 
 function App() {
@@ -13,6 +15,7 @@ function App() {
 
 
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [selectedTicket, setSelectedTicket] = useState(null);
   // Filter states
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState('All');
@@ -43,6 +46,44 @@ function App() {
     const matchesPriority = filterPriority === 'All' || ticket.priority === filterPriority;
     return matchesSearch && matchesStatus && matchesPriority;
   });
+
+  // Update status handler
+  const handleUpdateStatus = (ticketId, newStatus) => {
+    const updatedTickets = tickets.map(ticket => 
+      ticket.id === ticketId ? { ...ticket, status: newStatus } : ticket
+    );
+    setTickets(updatedTickets);
+    // Update the currently viewed ticket so the modal reflects the change immediately
+    if (selectedTicket && selectedTicket.id === ticketId) {
+      setSelectedTicket({ ...selectedTicket, status: newStatus });
+    }
+  };
+
+  // Add note handler
+  const handleAddNote = (ticketId, noteText) => {
+    const newNote = {
+      id: crypto.randomUUID(),
+      text: noteText,
+      timestamp: new Date().toISOString()
+    };
+    const updatedTickets = tickets.map(ticket => {
+      if (ticket.id === ticketId) {
+        return {
+          ...ticket,
+          notes: [...(ticket.notes || []), newNote]
+        };
+      }
+      return ticket;
+    });
+    setTickets(updatedTickets);
+    // Update the modal's state
+    if (selectedTicket && selectedTicket.id === ticketId) {
+      setSelectedTicket(prev => ({
+        ...prev,
+        notes: [...(prev.notes || []), newNote]
+      }));
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800 p-6 font-sans">
