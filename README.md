@@ -43,3 +43,6 @@ To run this project on your local machine:
 
 ## Deployment
 The application is deployed via Vercel and can be accessed live here: 
+```bash
+https://ucs-mini-service-desk-six.vercel.app
+```
