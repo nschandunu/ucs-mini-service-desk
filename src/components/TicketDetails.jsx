@@ -16,14 +16,6 @@ function TicketDetails({ ticket, onClose, onUpdateStatus, onAddNote }) {
     setNewNote('');
   };
 
-  const getPriorityColor = (priority) => {
-    switch (priority) {
-      case 'High': return 'bg-red-50 text-red-700';
-      case 'Medium': return 'bg-orange-50 text-orange-700';
-      case 'Low': return 'bg-blue-50 text-blue-700';
-      default: return 'bg-zinc-50 text-zinc-700';
-    }
-  };
 
   return (
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50 font-mono">
