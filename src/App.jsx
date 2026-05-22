@@ -86,16 +86,16 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-800 p-6 font-sans">
-      <div className="max-w-5xl mx-auto space-y-6">
-        <header className="flex justify-between items-center bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+    <div className="min-h-screen bg-black text-white p-4 md:p-8 font-mono">
+      <div className="max-w-5xl mx-auto space-y-8">
+        <header className="flex justify-between items-center border-b-2 border-white pb-6">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">UCS Service Desk</h1>
-            <p className="text-sm text-gray-500">Manage support tickets efficiently</p>
+            <h1 className="text-3xl font-bold uppercase tracking-tight">UCS Service Desk</h1>
+            <p className="text-sm text-gray-400 mt-1">System Tickets & Tracking</p>
           </div>
           <button 
             onClick={() => setIsFormOpen(true)}
-            className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 transition-colors"
+            className="bg-white text-black px-4 py-2 font-bold hover:bg-gray-300 transition-colors uppercase text-sm border-2 border-transparent focus:border-gray-500"
           >
             + New Ticket
           </button>
@@ -105,18 +105,18 @@ function App() {
         <Dashboard tickets={tickets} />
 
         {/* Filter Bar */}
-        <div className="flex flex-col md:flex-row gap-4 bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+        <div className="flex flex-col md:flex-row gap-4 border border-white/20 p-4">
           <input 
             type="text" 
             placeholder="Search tickets..." 
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="flex-1 border border-gray-300 rounded-md p-2 text-sm focus:ring-2 focus:ring-black focus:outline-none"
+            className="flex-1 bg-black border border-white/30 p-2 text-sm text-white focus:border-white focus:outline-none placeholder-gray-500"
           />
           <select 
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
-            className="border border-gray-300 rounded-md p-2 text-sm focus:ring-2 focus:ring-black focus:outline-none bg-white"
+            className="bg-black border border-white/30 p-2 text-sm text-white focus:border-white focus:outline-none"
           >
             <option value="All">All Statuses</option>
             <option value="Open">Open</option>
@@ -126,7 +126,7 @@ function App() {
           <select 
             value={filterPriority}
             onChange={(e) => setFilterPriority(e.target.value)}
-            className="border border-gray-300 rounded-md p-2 text-sm focus:ring-2 focus:ring-black focus:outline-none bg-white"
+            className="bg-black border border-white/30 p-2 text-sm text-white focus:border-white focus:outline-none"
           >
             <option value="All">All Priorities</option>
             <option value="High">High</option>

@@ -4,19 +4,19 @@ function Dashboard({ tickets }) {
   const inProgress = tickets.filter(t => t.status === 'In Progress').length;
   const closed = tickets.filter(t => t.status === 'Closed').length;
 
-  const StatCard = ({ label, count, colorClass }) => (
-    <div className="bg-white p-5 rounded-lg border border-gray-100 shadow-sm flex flex-col justify-center">
-      <span className="text-sm font-medium text-gray-500 mb-1">{label}</span>
-      <span className={`text-3xl font-bold ${colorClass}`}>{count}</span>
+  const StatCard = ({ label, count }) => (
+    <div className="border border-white/20 p-4 flex flex-col justify-center bg-black hover:border-white/50 transition-colors">
+      <span className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">{label}</span>
+      <span className="text-3xl font-mono text-white">{count}</span>
     </div>
   );
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <StatCard label="Total Tickets" count={total} colorClass="text-gray-900" />
-      <StatCard label="Open" count={open} colorClass="text-blue-600" />
-      <StatCard label="In Progress" count={inProgress} colorClass="text-amber-500" />
-      <StatCard label="Closed" count={closed} colorClass="text-gray-400" />
+      <StatCard label="Total Tickets" count={total} />
+      <StatCard label="Open" count={open} />
+      <StatCard label="In Progress" count={inProgress} />
+      <StatCard label="Closed" count={closed} />
     </div>
   );
 }
